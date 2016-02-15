@@ -36,6 +36,37 @@ namespace BAExcel
             return sheetResult;
         }
 
+        public SheetWrapper this[int index]
+        {
+            get
+            {
+                HSSFSheet sheet = (HSSFSheet)_book.GetSheetAt(index);
+                if (sheet != null)
+                {
+                    return new SheetWrapper(this, sheet);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public SheetWrapper this[string name]
+        {
+            get
+            {
+                HSSFSheet sheet = (HSSFSheet)_book.GetSheet(name);
+                if (sheet != null)
+                {
+                    return new SheetWrapper(this, sheet);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
         public void CreateStyle(string name, bool bold, short fontSize, bool wrapText, short indention)
         {
             //font style1: underlined, italic, red color, fontsize=20

@@ -20,6 +20,12 @@ namespace TestExcel
 
             sbyte[] t = wrapper.GetBytes();
             wrapper.Save("c:\\temp\\test.xlsx");
+
+
+            BookWrapper w2 = ExcelUtil.LoadExcel(t);
+            SheetWrapper s2 = w2["Test"];
+            Console.WriteLine(s2.GetText(CellPos.CreateCellPos(0, 0)));
+
         }
     }
 }

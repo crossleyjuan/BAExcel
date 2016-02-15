@@ -11,7 +11,7 @@ namespace BAExcel
     public class ExcelUtil
     {
 
-        private static byte[] LoadFile(string fileName)
+        private static sbyte[] LoadFile(string fileName)
         {
             FileStream fs = new FileStream(fileName, FileMode.Open);
 
@@ -25,18 +25,23 @@ namespace BAExcel
 
             fs.Close();
 
-            return ms.ToArray();
+            byte[] result = ms.ToArray();
+            sbyte[] sresult = new sbyte[result.Length];
+            Buffer.BlockCopy(result, 0, sresult, 0, result.Length);
+            return sresult;
         }
 
         public static BookWrapper LoadExcel(string fileName)
         {
-            byte[] fileContent = LoadFile(fileName);
+            sbyte[] fileContent = LoadFile(fileName);
 
             return LoadExcel(fileContent);
         }
 
-        public static BookWrapper LoadExcel(byte[] file)
+        public static BookWrapper LoadExcel(sbyte[] sfile)
         {
+            byte[] file = new byte[sfile.Length];
+            Buffer.BlockCopy(sfile, 0, file, 0, sfile.Length);
             MemoryStream ms = new MemoryStream(file);
 
             HSSFWorkbook book = new HSSFWorkbook(ms);

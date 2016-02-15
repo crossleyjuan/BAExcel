@@ -8,12 +8,13 @@ How to use it
 
 To use it you just need to add the BAExcel.dll as part of the component library using the following:
 
-Name: BAExcel
-Namespace: BAExcel
+    Name: BAExcel
+    Namespace: BAExcel
 
 and add the NPOI.dll as:
-Name: NPOI
-Namespace: NPOI
+
+    Name: NPOI
+    Namespace: NPOI
 
 Sample Rule
 ---
